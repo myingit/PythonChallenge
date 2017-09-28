@@ -17,7 +17,11 @@ mission 9 steps:
    fill – color to use for the fill.
    outline – color to use for the outline.
 
-there is another way to add authentication information to 'urllib2.Request'. 'urllib' is need to co-work with 'urllib2'.
+if website use a login script for authentication. POST request method is needed to send encoded login data to website.
+in this situation, 'urllib.urlencode' is needed to co-work with 'urllib2.Request' to submit login data in POST request.
+usually the password should be encrypted. here is an example of md5 encrypted password.
+   # username = "username_string"
+   # password = hashlib.md5("password_string").hexdigest()
    # data = urllib.urlencode({'username':username,'password':password})
    # request = urllib2.Request(url,data)
    # html_data = urllib2.urlopen(request).read()
@@ -29,7 +33,7 @@ from PIL import Image, ImageDraw
 url = "http://www.pythonchallenge.com/pc/return/good.html"
 username = "huge"
 password = "file"
-candidate_proxies = [
+candidate_proxies = [{},
                      {'http':'http://87.254.212.120:8080'},
                      {'http':'http://10.158.100.3:8080'},
                      {'http':'http://10.144.8.20:8080'}]
